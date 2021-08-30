@@ -5,6 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Users\UsersController;
 use App\Http\Controllers\Users\ProfilesController;
 use App\Http\Controllers\Users\PermissionsController;
+use App\Mail\PrimeiroEmailEnviado;
+// use Illuminate\Support\Facade\Mail;
 
 Route::prefix('usuarios')->middleware('verify.permissions')->group(function () {
     Route::get('/', [UsersController::class, 'index'])->name('users');
@@ -38,4 +40,18 @@ Route::prefix('perfil')->group(function () {
     Route::post('/', [UserController::class, 'personalInfoUpdate'])->name('user.personal.update');
     Route::get('/alterar-senha', [UserController::class, 'userPassword'])->name('user.password');
     Route::post('/alterar-senha', [UserController::class, 'updatePassword'])->name('user.password.update');
+});
+
+Route::get('envio-email', function(){
+
+    $user = new stdClass();
+   
+    $user->name = 'Amanda';
+    $user->email = 'amandasilvaf1995@gmail.com';
+    //dd($user);
+    //return new PrimeiroEmailEnviado($user);
+
+    
+    Mail::send(new PrimeiroEmailEnviado($user));
+    
 });

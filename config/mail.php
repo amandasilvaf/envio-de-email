@@ -84,9 +84,13 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'contato@agenciaecode.com.br'),
+        'name' => env('MAIL_FROM_NAME', 'e/code - Amanda'),
     ],
+
+    'reply_to' => [
+        'address' => 'contato@agenciaecode.com.br', 
+        'name' => 'e/code - Amanda'],
 
     /*
     |--------------------------------------------------------------------------

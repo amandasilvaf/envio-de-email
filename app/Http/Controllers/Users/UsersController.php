@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Panel\Navigation\Profile;
 use App\Models\Panel\Navigation\UserProfile;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CadastroEmail;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -111,12 +114,19 @@ class UsersController extends Controller
                 'user_id' => $user->id
             ]);
         }
+       
 
         if (!$user) {
             return response()->json(['Não foi possível realizar o cadastro.'], 400);
         }
 
+
+         $destino = $user->email;
+         Mail::to($destino)->send(new CadastroEmail($user));
+        
         return response()->json(['result' => 'success'], 201);
+
+
     }
 
     public function editUser($id)

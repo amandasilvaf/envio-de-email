@@ -7,21 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-
-class PrimeiroEmailEnviado extends Mailable
+class CadastroEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $user;
+    public $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(\stdClass $user)
+    public function __construct($user)
     {
-        $this->user = $user;
+        $this->user = $user; 
     }
 
     /**
@@ -31,9 +30,6 @@ class PrimeiroEmailEnviado extends Mailable
      */
     public function build()
     {
-        $this->subject('Meu primeiro email enviado de uma aplicação Laravel 8!');
-        $this->to($this->user->email, $this->user->name);
-
-        return $this->markdown('emails.PrimeiroEmailEnviado',['user' => $this->user]);
+        return $this->markdown('emails.cadastrado')->subject('Confirmação de cadastro.');
     }
 }

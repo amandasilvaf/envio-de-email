@@ -49,9 +49,7 @@ Route::get('envio-email', function(){
     $user->name = 'Amanda';
     $user->email = 'amandasilvaf1995@gmail.com';
     //dd($user);
-    //return new PrimeiroEmailEnviado($user);
-
-    
-    Mail::send(new PrimeiroEmailEnviado($user));
+    return new PrimeiroEmailEnviado($user);
+   // Mail::send(new PrimeiroEmailEnviado($user));
     
 });

@@ -34,6 +34,6 @@ class PrimeiroEmailEnviado extends Mailable
         $this->subject('Meu primeiro email enviado de uma aplicação Laravel 8!');
         $this->to($this->user->email, $this->user->name);
 
-        return $this->view('emails.PrimeiroEmailEnviado',['user' => $this->user]);
+        return $this->markdown('emails.PrimeiroEmailEnviado',['user' => $this->user]);
     }
 }
